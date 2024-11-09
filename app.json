@@ -3,6 +3,7 @@
     "name": "SocialPhotoApp",
     "slug": "SocialPhotoApp",
     "version": "1.0.0",
+    "scheme": "com.socialphotoapp",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,10 +19,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jbarrios23.SocialPhotoApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3bd7a454-42a0-4183-8c3c-10f12945556a"
+      }
     }
   }
 }

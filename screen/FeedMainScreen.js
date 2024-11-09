@@ -5,8 +5,8 @@ import CapturePhotoButton from '../components/CapturePhotoButton';
 export default function FeedMainScreen(){
     return (
         <View style={styles.container}>
-          <CapturePhotoButton/>
-          <FeedScreen/>
+          {/* <CapturePhotoButton/> */}
+          <FeedScreen />
         </View>
       );
 };
