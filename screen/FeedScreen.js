@@ -5,7 +5,7 @@ import { getSavedImage } from "../components/PhotoService";
 import CapturePhotoButton from "../components/CapturePhotoButton";
 import { loadUser } from "../utils/utils";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { signOut } from "../firebase/AuthService";
 
 const FeedScreen = () => {
@@ -23,7 +23,8 @@ const FeedScreen = () => {
 
     const loadUserTotal = async () => {
         try {
-            const user = await loadUser();  // Espera a que loadUser se resuelva
+            const user = await loadUser();
+            console.log("User name 1", user);
             if (user && user.email) {  // Verifica si el usuario tiene un correo
                 console.log("User name 2", user.email);
                 setUserName(user.email);  // Asigna el nombre del usuario
@@ -38,8 +39,14 @@ const FeedScreen = () => {
     // Llama a loadImages cuando el componente se monta
     useEffect(() => {
         loadImages();
-        loadUserTotal();
+        //loadUserTotal();
     }, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            loadUserTotal();
+        },[])
+    );
 
     // Callback para actualizar el feed cuando una imagen es guardada
     const handleImageSaved = () => {

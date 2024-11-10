@@ -3,28 +3,21 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Guardar el nombre del usuario cuando inicie sesión
 export const saveUser = async (user) => {
     try {
-        await AsyncStorage.setItem('user', JSON.stringify(user)); // Guarda los datos del usuario
+        await AsyncStorage.setItem('user', JSON.stringify(user));
+        console.log('User data saved successfully'); 
     } catch (error) {
         console.error('Error al guardar el usuario:', error);
     }
 };
 
+
 export const loadUser = async () => {
     try {
-        const user = await AsyncStorage.getItem('user');  // Obtiene el usuario desde AsyncStorage
-        console.log('Get user',user)
-        if (user) {
-            const parsedUser = JSON.parse(user);  // Intenta parsear el valor
-            console.log('Get user 2',parsedUser)
-            return parsedUser;
-        } else {
-            console.error("Error al cargar el nombre del usuario 1:", error);
-            return '';
-        }
-
+      const userData = await AsyncStorage.getItem('user');
+      return userData ? JSON.parse(userData) : null;
     } catch (error) {
-
-        console.error("Error al cargar el nombre del usuario:", error);
-        return '';
+      console.error("Error getting user data:", error);
+      throw error;
     }
-};
+  };
+  
